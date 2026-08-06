@@ -75,22 +75,280 @@ button{font-family:inherit; touch-action:manipulation; -webkit-tap-highlight-col
 .k-note{margin-top:10px; font-size:.66rem; color:rgba(255,255,255,.6); font-weight:600}
 .skyline{position:absolute; left:0; right:0; bottom:-1px; z-index:3; display:block; width:100%; height:80px}
 
-/* ============ خط اليوم الزمني ============ */
-main{max-width:1120px; margin:auto; padding:52px 20px 70px}
-.tl-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:var(--sp-3) var(--sp-3) 26px; margin-bottom:var(--sp-4)}
-.tl-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:var(--sp-2)}
-.tl-head h2{font-size:1rem; font-weight:900; color:var(--teal-900); padding-inline-start:12px; border-inline-start:4px solid var(--gold)}
-.tl-head p{color:var(--muted); font-size:.72rem; font-weight:600}
-.tl{position:relative; height:64px; background:var(--teal-50); border-radius:var(--radius-sm); overflow:hidden}
-.tl-seg{position:absolute; top:24px; height:12px; background:rgba(211,165,69,.35); border-radius:6px}
-.tl-mark{position:absolute; top:0; height:100%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:18px; gap:3px}
-.tl-mark i{width:3px; height:16px; background:var(--teal-600); border-radius:2px}
-.tl-mark b{font-size:.6rem; color:var(--muted); font-weight:800; font-variant-numeric:tabular-nums}
-.tl-mark.next i{background:var(--gold); box-shadow:0 0 8px rgba(211,165,69,.9)}
-.tl-mark.next b{color:var(--gold-600)}
-.tl-dot{position:absolute; top:22px; width:14px; height:14px; border-radius:50%; background:var(--gold); transform:translateX(-50%);
-  box-shadow:0 0 0 4px rgba(211,165,69,.25), 0 0 12px rgba(211,165,69,.8); transition:left 1s linear}
 
+/* ============ خط اليوم الزمني ============ */
+
+main{
+    max-width:1120px;
+    margin:auto;
+    padding:52px 20px 70px;
+}
+
+.tl-card{
+    background:#fff;
+    border:1px solid rgba(17,101,90,.10);
+    border-radius:26px;
+    box-shadow:
+        0 14px 40px rgba(0,0,0,.08),
+        0 2px 8px rgba(0,0,0,.04);
+    padding:24px 22px 34px;
+    margin-bottom:32px;
+}
+
+.tl-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:22px;
+}
+
+.tl-head h2{
+    font-size:1.18rem;
+    font-weight:900;
+    color:var(--teal-900);
+}
+
+.tl-head p{
+    font-size:.8rem;
+    color:var(--muted);
+}
+
+/* Timeline */
+
+.tl{
+
+    position:relative;
+
+    height:118px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fbfd,
+            #eef5f3
+        );
+
+    overflow:visible;
+
+}
+
+/* Main track */
+
+.tl::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:22px;
+    right:22px;
+
+    top:54px;
+
+    height:10px;
+
+    border-radius:999px;
+
+    background:#d8e7e2;
+
+}
+
+/* Prayer windows */
+
+.tl-seg{
+
+    position:absolute;
+
+    top:49px;
+
+    height:20px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d8b45a,
+            #efcf81
+        );
+
+    box-shadow:
+        0 3px 10px rgba(211,165,69,.28);
+
+}
+
+/* Prayer markers */
+
+.tl-mark{
+
+    position:absolute;
+
+    top:0;
+
+    transform:translateX(-50%);
+
+    transition:.35s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.tl-mark i{
+
+    width:4px;
+
+    height:28px;
+
+    margin-top:20px;
+
+    border-radius:999px;
+
+    background:#0b665a;
+
+}
+
+.tl-mark b{
+
+    margin-top:8px;
+
+    font-size:.83rem;
+
+    font-weight:800;
+
+    color:#234;
+
+    white-space:nowrap;
+
+    font-variant-numeric:tabular-nums;
+
+}
+
+.tl-mark small{
+
+    font-size:.66rem;
+
+    margin-top:2px;
+
+    color:#70817c;
+
+    font-weight:700;
+
+}
+
+.tl-mark.alt{
+
+    flex-direction:column-reverse;
+
+}
+
+.tl-mark.alt i{
+
+    margin-top:0;
+
+    margin-bottom:20px;
+
+}
+
+.tl-mark.alt b{
+
+    margin-top:0;
+
+    margin-bottom:8px;
+
+}
+
+.tl-mark.alt small{
+
+    margin-bottom:2px;
+
+}
+
+.tl-mark.passed{
+
+    opacity:.35;
+
+}
+
+.tl-mark.next{
+
+    transform:
+        translateX(-50%)
+        scale(1.15);
+
+}
+
+.tl-mark.next i{
+
+    background:#d3a545;
+
+    box-shadow:
+        0 0 16px rgba(211,165,69,.9);
+
+}
+
+.tl-mark.next b{
+
+    color:#b58420;
+
+}
+
+/* Current time */
+
+.tl-dot{
+
+    position:absolute;
+
+    top:49px;
+
+    width:20px;
+
+    height:20px;
+
+    margin-left:-10px;
+
+    border-radius:50%;
+
+    background:white;
+
+    border:4px solid var(--gold);
+
+    transform:translateX(-50%);
+
+    box-shadow:
+        0 0 0 8px rgba(211,165,69,.16),
+        0 0 18px rgba(211,165,69,.65);
+
+    animation:timelinePulse 2.4s infinite;
+
+    will-change:transform;
+
+}
+
+@keyframes timelinePulse{
+
+    0%,100%{
+
+        box-shadow:
+        0 0 0 8px rgba(211,165,69,.16),
+        0 0 18px rgba(211,165,69,.65);
+
+    }
+
+    50%{
+
+        box-shadow:
+        0 0 0 15px rgba(211,165,69,0),
+        0 0 28px rgba(211,165,69,.95);
+
+    }
+
+}
 /* ============ الأقسام ============ */
 .sec-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-2); margin-bottom:var(--sp-3)}
 .sec-head h2{font-size:1.35rem; font-weight:900; color:var(--teal-900); padding-inline-start:14px; border-inline-start:4px solid var(--gold); line-height:1.3}
