@@ -1,12 +1,9 @@
-/* ============================================================
-   Service Worker — تحميل فوري + تخزين الخطوط والأيقونات + تحديث
-   عند نشر نسخة جديدة: غيّر CACHE_VERSION ليظهر زر «تحديث الآن».
-============================================================ */
-const CACHE_VERSION = 'mawaqit-v1';
+/* bumped to v2 so installed apps see the «تحديث الآن» bar */
+const CACHE_VERSION = 'mawaqit-v2';
 const CORE = [
   './','index.html','styles.css','fonts.css',
   'prayer-data.js','utils.js','data.js','ui.js','table.js',
-  'karah.js','timeline.js','clock.js','pwa.js','app.js'
+  'karah.js','clock.js','pwa.js','app.js'
 ];
 
 self.addEventListener('install', e => {
@@ -30,7 +27,6 @@ self.addEventListener('fetch', e => {
   if(req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  /* خطوط CDN: stale-while-revalidate */
   if(url.hostname.includes('cdn.jsdelivr.net')){
     e.respondWith((async () => {
       const cache = await caches.open(CACHE_VERSION);
@@ -41,7 +37,6 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  /* نفس الأصل: cache-first مع سقوط للشبكة */
   if(url.origin === location.origin){
     e.respondWith((async () => {
       const cache = await caches.open(CACHE_VERSION);
