@@ -1,10 +1,8 @@
-/* ============ التخزين المؤقت لعناصر DOM + العرض ============ */
 const DOM = {
   chipGreg: document.getElementById('chipGreg'),
   chipHijri: document.getElementById('chipHijri'),
   chipClock: document.getElementById('chipClock'),
   chipClockPeriod: document.getElementById('chipClockPeriod'),
-  todayLabel: document.getElementById('todayLabel'),
   cards: document.getElementById('cards'),
   kChips: document.getElementById('kChips'),
   months: document.getElementById('months'),
@@ -13,7 +11,6 @@ const DOM = {
   tableEl: document.getElementById('monthTable'),
   tableScroll: document.getElementById('tableScroll'),
   jumpToday: document.getElementById('jumpToday'),
-  tl: document.getElementById('tl'),
   ringProg: document.getElementById('ringProg'),
   cdText: document.getElementById('cdText'),
   nextName: document.getElementById('nextName'),
@@ -26,7 +23,6 @@ const DOM = {
 function renderChips(rec){
   DOM.chipGreg.textContent = gregLabel(rec);
   DOM.chipHijri.textContent = rec.h + ' 1448هـ';
-  DOM.todayLabel.textContent = 'مدينة السويس — ' + gregLabel(rec) + ' • ' + rec.h + ' 1448هـ';
 }
 
 function renderCards(rec){
