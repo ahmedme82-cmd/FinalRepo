@@ -1,4 +1,3 @@
-/* ============ محرك الوقت: الساعة، العدّ التنازلي، تغيّر اليوم ============ */
 const RING_R = 60, RING_C = 2 * Math.PI * RING_R;
 DOM.ringProg.style.strokeDasharray = RING_C;
 DOM.ringProg.style.strokeDashoffset = RING_C;
@@ -10,11 +9,9 @@ function startClock(state, onRollover){
   const tick = () => {
     const now = cairoNow();
     const h12 = now.h%12===0 ? 12 : now.h%12;
-    /* الأرقام داخل bdi‏(ltr) والفترة ص/م عنصر شقيق — ترتيب عربي سليم */
     DOM.chipClock.textContent = `${h12}:${p2(now.mi)}:${p2(now.s)}`;
     DOM.chipClockPeriod.textContent = now.h < 12 ? 'ص' : 'م';
 
-    /* تغيّر اليوم بعد منتصف الليل */
     if(now.key !== state.curKey){
       state.curKey = now.key;
       const rec0 = ALL.find(r => r.g === now.key);
@@ -36,9 +33,6 @@ function startClock(state, onRollover){
     const span = Math.max(1, next.sec - prev.sec);
     DOM.ringProg.style.strokeDashoffset = RING_C * (remaining / span);
     DOM.cdText.innerHTML = `<b>${p2(Math.floor(remaining/3600))}:${p2(Math.floor(remaining%3600/60))}:${p2(remaining%60)}</b>`;
-
-    state.nextK = nextIsTomorrow ? null : next.k;
-    updateTimeline(now.sec, state.nextK);
 
     const key = next.k + '|' + next.sec;
     if(key !== _lastNextKey){
