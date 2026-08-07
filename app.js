@@ -1,10 +1,8 @@
-/* ============ التجميع والحالة ============ */
 const state = {
   curKey: cairoNow().key,
   todayRec: null,
   selMonth: null,
-  wins: [],
-  nextK: null
+  wins: []
 };
 state.todayRec = ALL.find(r => r.g === state.curKey) || ALL[5];
 state.selMonth = MKEYS.includes(state.curKey.slice(0,7)) ? state.curKey.slice(0,7) : '2026-08';
@@ -15,7 +13,6 @@ function renderDay(){
   state.wins = computeWindows(state.todayRec);
   renderKarah(state.wins);
   renderTable(state.selMonth);
-  buildTimeline(state.todayRec, state.wins);
   resetNextFlag();
 }
 
@@ -26,7 +23,6 @@ function onRollover(rec0, now){
   renderDay();
 }
 
-/* تبديل الأشهر مع خفوت الجدول */
 DOM.months.addEventListener('click', e => {
   const b = e.target.closest('.m-pill'); if(!b || b.dataset.m === state.selMonth) return;
   state.selMonth = b.dataset.m;
